@@ -1,5 +1,6 @@
 package com.Senai.Filmes.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class ReservaAssentos {
     @GeneratedValue (strategy = GenerationType.UUID)
     private UUID id;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "reserva_id")
     private Reserva reserva;
