@@ -6,12 +6,14 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "oSalas")
+@Table(name = "Salas")
 
 public class Sala {
     @Id
@@ -22,6 +24,10 @@ public class Sala {
     private String nome;
 
     @Min(value = 1L, message = "A sala deve ter pelo menos 1 assento")
+    private Integer totalAssentos;
+
+    @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Assento> assentos = new ArrayList<>();
 
 
 }

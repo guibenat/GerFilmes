@@ -7,7 +7,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.util.UUID;
+
+@Entity
+@Table(name = "Usuario")
 
 public class Usuario {
     @Id
@@ -29,5 +33,5 @@ public class Usuario {
     private Cargo cargo;
 
     @CreationTimestamp
-    private
+    private LocalDate criadoEm;
 }
