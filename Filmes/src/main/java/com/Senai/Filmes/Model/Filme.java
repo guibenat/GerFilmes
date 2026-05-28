@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "cFilme")
+@Table(name = "filmes")
 
 public class Filme {
 
