@@ -18,11 +18,11 @@ public class Assentos {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
-    @NotBlank
+    @NotBlank(message = "A fileira do assento é obrigatório")
     private String fileira;
 
-    @NotNull
-    private int numero;
+    @NotNull(message = "O numero do assento é obrigatório")
+    private Integer numero;
 
     @ManyToOne
     @JoinColumn(name = "sala_id")
