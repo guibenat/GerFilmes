@@ -11,8 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Data
-@Table(name = "filmes")
-
+@Table(name = "Filmes")
 public class Filme {
 
     @Id
@@ -33,4 +32,6 @@ public class Filme {
     @NotNull(message = "O campo minutos é obrigatorio")
     @Min(value = 1,message = "A duração deve ser maior que 0.")
     private Integer duracaoMinuto;
+
+
 }
