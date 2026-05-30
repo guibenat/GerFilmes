@@ -27,7 +27,7 @@ public class Sala {
     private Integer totalAssentos;
 
     @OneToMany(mappedBy = "sala", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Assento> assentos = new ArrayList<>();
+    private List<Assentos> assentos = new ArrayList<>();
 
 
 }

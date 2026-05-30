@@ -1,12 +1,15 @@
 package com.Senai.Filmes.Service;
 
+import com.Senai.Filmes.DTO.Request.FilmeRequest;
 import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.Model.Filme;
 import com.Senai.Filmes.Repository.IFilmeRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FilmeService {
@@ -17,6 +20,23 @@ public class FilmeService {
     //CRUD
     public List<FilmeResponse> listarTodos(){
     return filmeRepository.findAll().stream().map(this::toResponse).toList();
+    }
+
+    public FilmeResponse busvcaPorFilmeId(UUID id) {
+        Filme filme = filmeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Filme não encontrado."));
+        return toResponse(filme);
+    }
+
+    public FilmeResponse cadatrarFilme(FilmeRequest request){
+        Filme filme = new Filme();
+        filme.setTitulo(request.titulo());
+        filme.setDescricao(request.descricao());
+        filme.setUrlPoster(request.urlPoster());
+        filme.setGenero(request.genero());
+        filme.setDuracaoMinuto(request.duracaoMinutos());
+
+        return toResponse(filmeRepository.save(filme));
     }
 
     private FilmeResponse toResponse(Filme filme){
