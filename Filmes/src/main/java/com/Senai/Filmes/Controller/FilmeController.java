@@ -1,5 +1,6 @@
 package com.Senai.Filmes.Controller;
 
+import com.Senai.Filmes.DTO.Request.FilmeRequest;
 import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.Service.FilmeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ public class FilmeController {
     private FilmeService filmeService;
 
     @GetMapping
+    @Opera]
     public ResponseEntity<List<FilmeResponse>> listarTodos(){
         List<FilmeResponse> filmes = filmeService.listarTodos();
         if (filmes.isEmpty()) {
@@ -27,10 +29,12 @@ public class FilmeController {
         return new ResponseEntity<>(filmes,HttpStatus.OK);
     }
 
-    @GetMapping("/{Id}")
+    @GetMapping("/{id}")
     public ResponseEntity<FilmeResponse> buscarPorId(@PathVariable UUID id) {
-        FilmeResponse filmeResponse = filmeService.buscaPorFilmeId(id);
+        return new ResponseEntity<>(filmeService.buscaPorFilmeId(id), HttpStatus.OK);
+    }
 
-        return ResponseEntity.ok(filmeResponse);
+    @PostMapping ResponseEntity<FilmeResponse> criarFilme(@RequestBody FilmeRequest filmeRequest) {
+        return new ResponseEntity<>(filmeService.cadatrarFilme(filmeRequest), HttpStatus.CREATED);
     }
 }
