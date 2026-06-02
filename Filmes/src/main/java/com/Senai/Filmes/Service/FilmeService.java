@@ -22,7 +22,7 @@ public class FilmeService {
     return filmeRepository.findAll().stream().map(this::toResponse).toList();
     }
 
-    public FilmeResponse busvcaPorFilmeId(UUID id) {
+    public FilmeResponse buscaPorFilmeId(UUID id) {
         Filme filme = filmeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Filme não encontrado."));
         return toResponse(filme);

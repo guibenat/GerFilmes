@@ -29,7 +29,7 @@ public class FilmeController {
 
     @GetMapping("/{Id}")
     public ResponseEntity<FilmeResponse> buscarPorId(@PathVariable UUID id) {
-        FilmeResponse filmeResponse = filmeService.busvcaPorFilmeId(id);
+        FilmeResponse filmeResponse = filmeService.buscaPorFilmeId(id);
 
         return ResponseEntity.ok(filmeResponse);
     }
