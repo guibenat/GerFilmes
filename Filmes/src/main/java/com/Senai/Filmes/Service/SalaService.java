@@ -6,11 +6,13 @@ import com.Senai.Filmes.DTO.Response.SalaResponse;
 import com.Senai.Filmes.Model.Assentos;
 import com.Senai.Filmes.Model.Sala;
 import com.Senai.Filmes.Repository.ISalaRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class SalaService {
@@ -46,6 +48,18 @@ public class SalaService {
 
     public List<SalaResponse> listarTodos(){
         return salaRepository.findAll().stream().map(this::toResponse).toList();
+    }
+
+    public SalaResponse bucarPorId(UUID id) {
+        Sala sala = salaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Sala não encontrada."));
+        return toResponse(sala);
+    }
+
+    public SalaResponse deletar(UUID id) {
+        Sala sala = salaRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Sala não encrontrada"));
+        return toResponse(sala);
     }
 
     private SalaResponse toResponse(Sala sala) {

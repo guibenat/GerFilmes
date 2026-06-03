@@ -1,5 +1,6 @@
 package com.Senai.Filmes.Model;
 
+import com.Senai.Filmes.DTO.Response.SalaResponse;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @Table(name = "Salas")
 
 public class Sala {
+    public List<SalaResponse> listarTodos;
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
