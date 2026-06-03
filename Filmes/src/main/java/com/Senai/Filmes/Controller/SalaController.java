@@ -1,7 +1,6 @@
 package com.Senai.Filmes.Controller;
 
 import com.Senai.Filmes.DTO.Request.SalaRequest;
-import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.DTO.Response.SalaResponse;
 import com.Senai.Filmes.Model.Sala;
 import com.Senai.Filmes.Service.SalaService;
@@ -51,6 +50,8 @@ public class SalaController {
         salaService.deletar(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+
 
 
 
