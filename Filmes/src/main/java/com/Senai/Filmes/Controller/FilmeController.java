@@ -3,6 +3,7 @@ package com.Senai.Filmes.Controller;
 import com.Senai.Filmes.DTO.Request.FilmeRequest;
 import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.Service.FilmeService;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,8 @@ public class FilmeController {
     private FilmeService filmeService;
 
     @GetMapping
-    @Opera]
+    @Operation(summary = "Função que lista todos filmes", description = "Retorna os filmes")
+
     public ResponseEntity<List<FilmeResponse>> listarTodos(){
         List<FilmeResponse> filmes = filmeService.listarTodos();
         if (filmes.isEmpty()) {
@@ -30,11 +32,29 @@ public class FilmeController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Função que busca os filmes por id", description = "Retorna os filmes buscados por id")
+
     public ResponseEntity<FilmeResponse> buscarPorId(@PathVariable UUID id) {
         return new ResponseEntity<>(filmeService.buscaPorFilmeId(id), HttpStatus.OK);
     }
 
-    @PostMapping ResponseEntity<FilmeResponse> criarFilme(@RequestBody FilmeRequest filmeRequest) {
+    @PostMapping("/{id}")
+    @Operation(summary = "Função que cria filmes", description = "Cria os filmes")
+
+    ResponseEntity<FilmeResponse> criarFilme(@RequestBody FilmeRequest filmeRequest) {
         return new ResponseEntity<>(filmeService.cadatrarFilme(filmeRequest), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/{id}")
+    @Operation(summary = "Função de atualizar filme", description = "Atualiza filmes")
+    public ResponseEntity<FilmeResponse> atualizar(@PathVariable UUID id, @RequestBody FilmeRequest filmeRequest) {
+        return new ResponseEntity<>(filmeService.atualizarFilme(id,filmeRequest), HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    @Operation(summary = "Função de deletar filmes", description = "Deleta filmes")
+    public ResponseEntity<FilmeResponse> delete (@PathVariable UUID id) {
+        filmeService.deletar(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
