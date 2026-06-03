@@ -22,7 +22,10 @@ public class SalaController {
     @GetMapping
     public ResponseEntity<List<SalaResponse>> listartodos (){
         List<SalaResponse> salas = salaService.listarTodos();
-
+        if (salas.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(salas,HttpStatus.OK);
 
     }
 
