@@ -1,6 +1,7 @@
 package com.Senai.Filmes.Service;
 
 import com.Senai.Filmes.DTO.Request.SalaRequest;
+import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.DTO.Response.SalaResponse;
 import com.Senai.Filmes.Model.Assentos;
 import com.Senai.Filmes.Model.Sala;
@@ -41,6 +42,10 @@ public class SalaService {
             }
         }
         return assentos;
+    }
+
+    public List<SalaResponse> listarTodos(){
+        return salaRepository.findAll().stream().map(this::toResponse).toList();
     }
 
     private SalaResponse toResponse(Sala sala) {
