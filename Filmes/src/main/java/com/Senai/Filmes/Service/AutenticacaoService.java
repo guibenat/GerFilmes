@@ -1,5 +1,6 @@
 package com.Senai.Filmes.Service;
 
+import Security.JwtUtil;
 import com.Senai.Filmes.Repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
