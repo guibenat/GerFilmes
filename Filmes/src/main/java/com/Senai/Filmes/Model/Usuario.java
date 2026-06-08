@@ -5,6 +5,7 @@ import com.Senai.Filmes.Model.Enums.Cargo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "Usuario")
+@Data
 
 public class Usuario {
     @Id
