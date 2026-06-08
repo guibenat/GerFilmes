@@ -1,4 +1,4 @@
-package Security;
+package com.Senai.Filmes.Security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;

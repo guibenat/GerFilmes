@@ -1,4 +1,4 @@
-package Security;
+package com.Senai.Filmes.Security;
 
 import com.Senai.Filmes.Model.Usuario;
 import com.Senai.Filmes.Repository.IUsuarioRepository;

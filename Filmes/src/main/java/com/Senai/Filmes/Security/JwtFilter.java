@@ -1,4 +1,4 @@
-package Security;
+package com.Senai.Filmes.Security;
 
 import io.jsonwebtoken.io.IOException;
 import jakarta.servlet.FilterChain;
