@@ -13,6 +13,6 @@ public class ReservaService {
     @Autowired private ISessaoRepository sessaoRepository;
     @Autowired private IUsuarioRepository usuarioRepository;
     @Autowired private IAssentoRepository assentoRepository;
-    @Autowired private IReservaAssentoRepository reservaAssentoRepository;
+    @Autowired private IReservaRepository reservaAssentoRepository;
     @Autowired private SessaoService sessaoService;
 }
