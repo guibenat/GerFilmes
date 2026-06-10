@@ -2,6 +2,7 @@ package com.Senai.Filmes.Service;
 
 import com.Senai.Filmes.Repository.IAssentoRepository;
 import com.Senai.Filmes.Repository.IReservaRepository;
+import com.Senai.Filmes.Repository.ISessaoRepository;
 import com.Senai.Filmes.Repository.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
