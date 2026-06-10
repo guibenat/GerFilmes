@@ -37,7 +37,6 @@ public class SalaController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(salas,HttpStatus.OK);
-
     }
 
     @GetMapping("/{id}")
@@ -50,9 +49,5 @@ public class SalaController {
         salaService.deletar(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-
-
-
-
 
 }

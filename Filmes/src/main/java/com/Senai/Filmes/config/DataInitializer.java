@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DataInitializer implements CommandLineRunner {
     @Autowired
     private IUsuarioRepository usuarioRepository;
@@ -21,7 +23,7 @@ public class DataInitializer implements CommandLineRunner {
     private String adminSenha;
 
     @Override
-    public void  run(String... args) {
+    public void run(String... args) {
         if (usuarioRepository.existsByEmail(adminEmail)) {
             return;
         }
@@ -29,11 +31,11 @@ public class DataInitializer implements CommandLineRunner {
         Usuario admin = new Usuario();
         admin.setNome("Administrador");
         admin.setEmail(adminEmail);
-        admin.setSenha(passwordEncoder.encode(adminSenha);
+        admin.setSenha(passwordEncoder.encode(adminSenha));
         admin.setCargo(Cargo.ADMIN);
 
         usuarioRepository.save(admin);
         System.out.println(">>> Admin criado: " + adminEmail);
     }
     }
-}
+

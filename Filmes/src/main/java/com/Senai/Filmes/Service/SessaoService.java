@@ -28,7 +28,6 @@ public class SessaoService {
                 sessao.getFilme().getUrlPoster(),
                 sessao.getFilme().getGenero(),
                 sessao.getFilme().getDuracaoMinuto()
-
         );
 
         return new SessaoResponse(
