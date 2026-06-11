@@ -30,10 +30,12 @@ public class Sessao {
     private Sala sala;
 
     @NotNull(message = "O horario do inicio e obtigatorio")
-    private LocalDateTime inicio;
+    private LocalDateTime inicioDia;
 
     @NotNull(message = "O horario do fim é obrigatorio")
     private LocalDateTime fim;
+
+    @NotNull(message = "O inicio da sessãoprecisa ser informado.")
 
     @NotNull(message = "O preço é obrigatório")
     private BigDecimal preco;

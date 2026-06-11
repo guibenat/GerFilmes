@@ -15,9 +15,8 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "Salas")
-
 public class Sala {
-    public List<SalaResponse> listarTodos;
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
