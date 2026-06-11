@@ -23,7 +23,6 @@ public class SalaController {
     @Autowired
     private SalaService salaService;
 
-
     @PostMapping
     @Operation(summary = "Criar sala")
     public ResponseEntity<SalaResponse> criarSala (@RequestBody SalaRequest salaRequest){
