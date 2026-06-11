@@ -23,6 +23,7 @@ public interface ISessaoRepository extends JpaRepository<Sessao, UUID> {
                                  @Param("inicio") LocalDateTime inicio,
                                  @Param("fim") LocalDateTime fim);
 
-    List<Sessao> findByFilmeId(UUID id);
+    @Query("select s FROM Sessao s WHERE s.filme.id = : filmeId ORDER BY s.inicio ASC ")
+    List<Sessao> findByFilmeId(@Param("filmeId") UUID id);
 
 }
