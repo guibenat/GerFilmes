@@ -29,8 +29,8 @@ public class Sessao {
     @NotNull
     private Sala sala;
 
-    @NotNull(message = "O horario do inicio e obtigatorio")
-    private LocalDateTime inicio;
+    @NotNull(message = "O horario do inicio e obrigatorio")
+    private LocalDateTime inicioDia;
 
     @NotNull(message = "O horario do fim é obrigatorio")
     private LocalDateTime fim;

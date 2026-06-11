@@ -13,7 +13,7 @@ import java.util.UUID;
 @Repository
 public interface ISessaoRepository extends JpaRepository<Sessao, UUID> {
 
-    @Query("SELECT s FROM Sessao s WHERE s.inicio >= :inicio AND s.inicio < :fim")
+    @Query("SELECT s FROM Sessao s WHERE s.inicio >= :inicioDia AND s.inicio < :fim")
     List<Sessao> findByData(@Param("inicio") LocalDateTime inicioDia,
                             @Param("fim") LocalDateTime fimDia);
 
