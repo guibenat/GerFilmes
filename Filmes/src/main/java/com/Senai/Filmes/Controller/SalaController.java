@@ -31,6 +31,7 @@ public class SalaController {
     }
 
     @GetMapping
+    @Operation(summary = "Listar salas")
     public ResponseEntity<List<SalaResponse>> listartodos (){
         List<SalaResponse> salas = salaService.listarTodos();
         if (salas.isEmpty()) {
@@ -40,11 +41,13 @@ public class SalaController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Bucar sala por Id")
     public ResponseEntity<SalaResponse> buscarPorId (@PathVariable UUID id) {
         return new ResponseEntity<>(salaService.bucarPorId(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
+    @Operation(summary = "Deletar sala")
     public ResponseEntity<SalaResponse> delete(@PathVariable UUID id) {
         salaService.deletar(id);
         return new ResponseEntity<>(HttpStatus.OK);
