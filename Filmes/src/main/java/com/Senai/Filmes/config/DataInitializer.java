@@ -19,7 +19,7 @@ public class DataInitializer implements CommandLineRunner {
     @Value("${admin.email:admin@cinema.com}")
     private String adminEmail;
 
-    @Value("${admin.senha:admin@123}")
+    @Value("${admin.senha:Admin@123}")
     private String adminSenha;
 
     @Override
