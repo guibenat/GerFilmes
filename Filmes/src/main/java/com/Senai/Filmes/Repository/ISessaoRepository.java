@@ -11,17 +11,18 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface ISessaoRepository extends JpaRepository <Sessao, UUID>{
+public interface ISessaoRepository extends JpaRepository<Sessao, UUID> {
 
-    @Query("SELECT s  FROM Sessao s WHERE s.inicio >= :inicio AND s.inicioSessao < :fimDia")
-    List<Sessao> findByData(@Param("inicio")LocalDateTime inicioDia,
+    @Query("SELECT s FROM Sessao s WHERE s.inicio >= :inicio AND s.inicio < :fim")
+    List<Sessao> findByData(@Param("inicio") LocalDateTime inicioDia,
                             @Param("fim") LocalDateTime fimDia);
 
-    @Query("SELECT CASE WHEN COUNT(s) > THEN true ELSE false END FROM Sessao s" +
+    @Query("SELECT CASE WHEN COUNT(s) > 0 THEN true ELSE false END FROM Sessao s " +
             "WHERE s.sala.id = :salaId AND s.inicio < :fim AND s.fim > :inicio")
     boolean existeConflitoDeSala(@Param("salaId") UUID salaId,
                                  @Param("inicio") LocalDateTime inicio,
                                  @Param("fim") LocalDateTime fim);
+
     List<Sessao> findByFilmeId(UUID id);
 
 }
