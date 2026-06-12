@@ -33,7 +33,7 @@ public class SessaoService {
         return new SessaoResponse(
                 sessao.getSala().getId(),
                 filme,
-                sessao.getInicio(),
+                sessao.getInicioDia(),
                 sessao.getFim(),
                 sessao.getPreco()
         );
