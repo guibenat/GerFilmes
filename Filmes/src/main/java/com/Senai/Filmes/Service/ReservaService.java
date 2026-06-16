@@ -53,7 +53,7 @@ public class ReservaService {
         Sessao sessao = sessaoRepository.findById(request.sessaoId())
                 .orElseThrow(() -> new EntityNotFoundException("Sessão não encontrada"));
 
-        if (!sessao.getInicio().isAfter(LocalDateTime.now())) {
+        if (!sessao.getInicioDia().isAfter(LocalDateTime.now())) {
             throw new IllegalStateException("Só é possível reservar sessões futuras");
         }
 
@@ -112,11 +112,11 @@ public class ReservaService {
             throw new IllegalStateException("Você não tem permissão para cancelar esta reserva");
         }
 
-        if (!reserva.getSessao().getInicio().isAfter(LocalDateTime.now())) {
+        if (!reserva.getSessao().getInicioDia().isAfter(LocalDateTime.now())) {
             throw new IllegalStateException("Não é possível cancelar uma reserva de sessão que já começou");
         }
 
-        reserva.setStatus(StatusReserava.CANCELADA);
+        reserva.setStatus(StatusReserava.INATIVA);
         reservaRepository.save(reserva);
     }
 
@@ -131,13 +131,8 @@ public class ReservaService {
                 .toList();
 
 
+            return new ReservaResponse(reserva.getId(),
+                    reserva.)
     }
-        return new ReservaResponse(
-            reserva.getId(),
-                sessaoService.toResponse(reserva.getSessao()),
-    assentos,
-            reserva.getStatus(),
-            reserva.getCriadoEm()
-            );
-}
+        ;
 }

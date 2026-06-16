@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface IReservaRepository extends JpaRepository<ReservaAssentos, UUID> {
-    List<Reserva> findByEmail(UUID usuarioId);
+public interface IReservaRepository extends JpaRepository<Reserva, UUID> {
+    List<Reserva> findByUsuarioId(UUID usuarioId);
 
 }

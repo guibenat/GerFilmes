@@ -4,6 +4,7 @@ import com.Senai.Filmes.Model.Enums.StatusReserava;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -21,11 +22,12 @@ import java.util.UUID;
 public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @EqualsAndHashCode.Include
     private UUID id;
 
     @NotNull
     @ManyToOne
-    @JoinColumn(name = "usuario")
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
     @NotNull
