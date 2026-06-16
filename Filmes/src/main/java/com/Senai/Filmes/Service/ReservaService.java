@@ -53,7 +53,7 @@ public class ReservaService {
         List<AssentoResponse> assentosResponse = new ArrayList<>();
         for (UUID assentoId : request.assentoIds()) {
             Assentos assento = assentoRepository.findById(assentoId).orElseThrow();
-            ReservaAssentos ra = new ReservaAssentos(); // classe chama ReservaAssento
+            ReservaAssentos ra = new ReservaAssentos();
             ra.setReserva(reservaSalva);
             ra.setAssentos(assento);
             reservaSalva.getAssentos().add(ra);
@@ -61,9 +61,9 @@ public class ReservaService {
                     assento.getId(), assento.getFileira(), assento.getNumero(), false));
         }
 
-        reservaRepository.save(reservaSalva); // salva com os assentos (cascade)
+        reservaRepository.save(reservaSalva);
         return new ReservaResponse(reservaSalva.getId(),
-                sessaoService.toResponse(sessao), // converte Sessao → SessaoResponse
+                sessaoService.toResponse(sessao),
                 assentosResponse,
                 reservaSalva.getStatus(),
                 reservaSalva.getCriadoEm());
