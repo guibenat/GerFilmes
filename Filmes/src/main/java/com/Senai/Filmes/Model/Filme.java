@@ -25,6 +25,10 @@ public class Filme {
     private String descricao;
     private String urlPoster;
 
+    @NotNull(message = "O inicio deve ser informado.")
+    @Min(value = 1, message = "A duração deve ser maior que zero.")
+    private Integer inicio;
+
     @NotNull(message = "O campo genero é obrigatorio")
     @Enumerated(EnumType.STRING)
     private GeneroFilme genero;

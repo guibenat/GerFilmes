@@ -5,6 +5,7 @@ import com.Senai.Filmes.DTO.Response.AssentoResponse;
 import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.DTO.Response.SalaResponse;
 import com.Senai.Filmes.DTO.Response.SessaoResponse;
+import com.Senai.Filmes.Model.Enums.StatusReserava;
 import com.Senai.Filmes.Model.Filme;
 import com.Senai.Filmes.Model.Sala;
 import com.Senai.Filmes.Model.Sessao;
@@ -41,12 +42,16 @@ public class SessaoService {
                 .orElseThrow(() -> new EntityNotFoundException("Sessao nao encontrada")));
     }
 
+    public List<SessaoResponse> listarPorFilme(UUID filmeId) {
+        return sessaoRepository.findByFilmeId(filmeId).stream().map(this::toResponse).toList();
+    }
+
     public List<AssentoResponse> listarAssentosDisponiveis(UUID sessaoId) {
         Sessao sessao = sessaoRepository.findById(sessaoId)
                 .orElseThrow(() -> new EntityNotFoundException("Sessao nao encontrada"));
         // Busca IDs dos assentos ja ocupados nessa sessao
         List<UUID> ocupados = reservaAssentoRepository
-                .findAssentosOcupadosBySessaoId(sessaoId, StatusReserva.ATIVA);
+                .findAssentosOcupadosBySessaoId(sessaoId, StatusReserava.ATIVA);
         // Retorna todos os assentos com flag disponivel
         return assentoRepository.findBySalaId(sessao.getSala().getId()).stream()
                 .map(a -> new AssentoResponse(
@@ -80,7 +85,7 @@ public class SessaoService {
         FilmeResponse f = new FilmeResponse(
                 sessao.getFilme().getId(), sessao.getFilme().getTitulo(),
                 sessao.getFilme().getDescricao(), sessao.getFilme().getUrlPoster(),
-                sessao.getFilme().getGenero(), sessao.getFilme().getDuracaoMinutos());
+                sessao.getFilme().getGenero(), sessao.getFilme().getDuracaoMinuto());
         SalaResponse s = new SalaResponse(
                 sessao.getSala().getId(), sessao.getSala().getNome(), sessao.getSala().getTotalAssentos());
         return new SessaoResponse(sessao.getId(), f, s, sessao.getInicio(), sessao.getFim(), sessao.getPreco());
