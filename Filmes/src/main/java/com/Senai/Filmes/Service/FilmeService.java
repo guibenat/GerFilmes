@@ -41,7 +41,6 @@ public class FilmeService {
     public FilmeResponse atualizarFilme(UUID id, FilmeRequest filmeRequest) {
         Filme filme = filmeRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Nenhum filme encontrado"));
-
             filme.setTitulo(filmeRequest.titulo());
             filme.setDescricao(filmeRequest.descricao());
             filme.setUrlPoster(filmeRequest.urlPoster());
