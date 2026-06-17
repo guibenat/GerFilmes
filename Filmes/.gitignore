@@ -35,4 +35,5 @@ build/
 ### .env
 .env
 *.env
-.idea/
+.idea/docker-compose*.yml
+*.md
