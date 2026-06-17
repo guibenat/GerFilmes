@@ -2,6 +2,7 @@ package com.Senai.Filmes.Repository;
 
 import com.Senai.Filmes.Model.Enums.StatusReserava;
 import com.Senai.Filmes.Model.Sessao;
+import com.Senai.Filmes.Model.ReservaAssentos;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public interface IReservaAssentosRepository extends JpaRepository {
+public interface IReservaAssentosRepository extends JpaRepository<ReservaAssentos, UUID> {
 
     @Query("SELECT CASE WHEN COUNT(ra) > 0 THEN true ELSE false END"+
     "FROM ReservaAssentos ra" +
