@@ -3,17 +3,9 @@ package com.Senai.Filmes.Service;
 import com.Senai.Filmes.DTO.Request.ReservaRequest;
 import com.Senai.Filmes.DTO.Response.AssentoResponse;
 import com.Senai.Filmes.DTO.Response.ReservaResponse;
-import com.Senai.Filmes.Model.Assentos;
+import com.Senai.Filmes.Model.*;
 import com.Senai.Filmes.Model.Enums.StatusReserava;
-import com.Senai.Filmes.Model.Reserva;
-import com.Senai.Filmes.Model.ReservaAssentos;
-import com.Senai.Filmes.Model.Sessao;
-import com.Senai.Filmes.Model.Usuario;
-import com.Senai.Filmes.Repository.IAssentoRepository;
-import com.Senai.Filmes.Repository.IReservaAssentosRepository;
-import com.Senai.Filmes.Repository.IReservaRepository;
-import com.Senai.Filmes.Repository.ISessaoRepository;
-import com.Senai.Filmes.Repository.IUsuarioRepository;
+import com.Senai.Filmes.Repository.*;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -130,9 +122,12 @@ public class ReservaService {
                 ))
                 .toList();
 
-
-            return new ReservaResponse(reserva.getId(),
-                    reserva.)
+        return new ReservaResponse(
+                reserva.getId(),
+                sessaoService.toResponse(reserva.getSessao()),
+                assentos,
+                reserva.getStatus(),
+                reserva.getCriadoEm()
+        );
     }
-        ;
 }

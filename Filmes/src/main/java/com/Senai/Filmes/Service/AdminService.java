@@ -3,6 +3,7 @@ package com.Senai.Filmes.Service;
 import com.Senai.Filmes.DTO.Response.RelatorioResponse;
 import com.Senai.Filmes.DTO.Response.ReservaResponse;
 import com.Senai.Filmes.Model.Enums.Cargo;
+import com.Senai.Filmes.Model.Enums.StatusReserava;
 import com.Senai.Filmes.Model.Reserva;
 import com.Senai.Filmes.Model.Usuario;
 import com.Senai.Filmes.Repository.IReservaRepository;
@@ -33,21 +34,21 @@ public class AdminService {
         List<Reserva> todas = reservaRepository.findAll();
 
         long totalReservas = todas.stream()
-                .filter(r -> r.getStatus() == StatusReserva.ATIVA).count();
+                .filter(r -> r.getStatus() == StatusReserava.ATIVA).count();
 
         BigDecimal totalReceita = todas.stream()
-                .filter(r -> r.getStatus() == StatusReserva.ATIVA)
+                .filter(r -> r.getStatus() == StatusReserava.ATIVA)
                 .map(r -> r.getSessao().getPreco()
                         .multiply(BigDecimal.valueOf(r.getAssentos().size())))
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         Map<String, Long> porFilme = todas.stream()
-                .filter(r -> r.getStatus() == StatusReserva.ATIVA)
+                .filter(r -> r.getStatus() == StatusReserava.ATIVA)
                 .collect(Collectors.groupingBy(
                         r -> r.getSessao().getFilme().getTitulo(), Collectors.counting()));
 
-        List<RelatorioResponse.FilmeTotais> filmes = porFilme.entrySet().stream()
-                .map(e -> new RelatorioResponse.FilmeTotais(e.getKey(), e.getValue())).toList();
+        List<RelatorioResponse.FilmesTotais> filmes = porFilme.entrySet().stream()
+                .map(e -> new RelatorioResponse.FilmesTotais(e.getKey(), e.getValue())).toList();
 
         return new RelatorioResponse(totalReservas, totalReceita, filmes);
     }

@@ -51,7 +51,7 @@ public class SessaoService {
                 .orElseThrow(() -> new EntityNotFoundException("Sessao nao encontrada"));
         // Busca IDs dos assentos ja ocupados nessa sessao
         List<UUID> ocupados = reservaAssentoRepository
-                .findAssentosOcupadosBySessaoId(sessaoId, StatusReserava.ATIVA);
+                .findAssentosOcupadoBySessaoId(sessaoId, StatusReserava.ATIVA);
         // Retorna todos os assentos com flag disponivel
         return assentoRepository.findBySalaId(sessao.getSala().getId()).stream()
                 .map(a -> new AssentoResponse(
@@ -70,7 +70,7 @@ public class SessaoService {
         }
         Sessao sessao = new Sessao();
         sessao.setFilme(filme); sessao.setSala(sala);
-        sessao.setInicio(request.inicio()); sessao.setFim(request.fim());
+        sessao.setInicioDia(request.inicio()); sessao.setFim(request.fim());
         sessao.setPreco(request.preco());
         return toResponse(sessaoRepository.save(sessao));
     }
@@ -88,6 +88,6 @@ public class SessaoService {
                 sessao.getFilme().getGenero(), sessao.getFilme().getDuracaoMinuto());
         SalaResponse s = new SalaResponse(
                 sessao.getSala().getId(), sessao.getSala().getNome(), sessao.getSala().getTotalAssentos());
-        return new SessaoResponse(sessao.getId(), f, s, sessao.getInicio(), sessao.getFim(), sessao.getPreco());
+        return new SessaoResponse(sessao.getId(), f, s, sessao.getInicioDia(), sessao.getFim(), sessao.getPreco());
     }
 }
