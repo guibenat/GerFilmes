@@ -1,8 +1,8 @@
 package com.Senai.Filmes.Service;
 
 import com.Senai.Filmes.DTO.Request.FilmeRequest;
-import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.Model.Filme;
+import com.Senai.Filmes.DTO.Response.FilmeResponse;
 import com.Senai.Filmes.Repository.IFilmeRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ public class FilmeService {
     @Autowired
     private IFilmeRepository filmeRepository;
 
-    //CRUD
     public List<FilmeResponse> listarTodos(){
     return filmeRepository.findAll().stream().map(this::toResponse).toList();
     }
